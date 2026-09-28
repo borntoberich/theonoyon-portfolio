@@ -27,105 +27,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "agent-ia",
-    tag: "AI in production",
-    title: "Un agent IA dans le workflow d'une Content Factory Groupe",
-    summary:
-      "Développement d'un agent IA (Claude, GPT) intégré au workflow de production content, réduisant les allers-retours entre équipes d'environ 1h par brief.",
-    org: "Manutan Group",
-    date: "2026",
-    tags: ["AI", "Workflow-automation", "Content"],
-    tldr: "Réduction d'environ 1h par brief content grâce à un agent IA (Claude, GPT) intégré au workflow transverse d'une équipe marketing multi-pays.",
-    meta: [
-      { label: "Context", value: "Manutan Group · Équipe Go-To-Market" },
-      { label: "Period", value: "2026" },
-      { label: "Role", value: "Développement & intégration" },
-      { label: "Stack", value: "Claude, GPT, prompt engineering, Notion" },
-    ],
-    sections: [
-      {
-        heading: "Le contexte",
-        blocks: [
-          {
-            type: "p",
-            text: "La Content Factory de Manutan Group produit l'ensemble du contenu marketing déployé sur 17 marchés européens. Elle sert plusieurs équipes en amont : marketing produit, e-merchandising, communication interne, GTM.",
-          },
-          {
-            type: "p",
-            text: "Chaque brief part d'un émetteur (par exemple un Chef de Produit) et arrive à la Content Factory qui produit le livrable (fiche produit, landing page, contenu campagne). Entre les deux : une phase itérative d'allers-retours pour clarifier la demande, valider les intentions, préciser les livrables attendus.",
-          },
-        ],
-      },
-      {
-        heading: "Le problème",
-        blocks: [
-          {
-            type: "p",
-            text: "Chaque brief perdait en moyenne une heure en allers-retours de clarification avant que la Content Factory n'ait la matière suffisante pour produire.",
-          },
-          {
-            type: "p",
-            text: "À l'échelle du volume de briefs traités mensuellement, ce temps se cumulait en une friction opérationnelle mesurable. Le problème n'était pas la qualité des briefs — c'était la structure des briefs. Les émetteurs remplissaient des templates statiques qui n'anticipaient pas les questions récurrentes de la Content Factory.",
-          },
-        ],
-      },
-      {
-        heading: "L'approche",
-        blocks: [
-          {
-            type: "p",
-            text: "Plutôt que de refaire le template (approche déjà tentée), j'ai proposé un agent IA en amont du template : un assistant conversationnel qui questionne l'émetteur pour extraire l'intention complète du brief, puis génère un livrable structuré directement exploitable par la Content Factory.",
-          },
-          { type: "p", text: "Trois choix de conception clés :" },
-          {
-            type: "ul",
-            items: [
-              "Approche conversationnelle plutôt que formulaire à trous. L'agent pose des questions contextuelles, adapte ses relances à la nature du brief (produit, campagne, contenu éditorial).",
-              "Prompt engineering itératif. Base de connaissances sur les typologies de briefs Manutan, guardrails sur les questions obligatoires, ton adapté au contexte pro.",
-              "Sortie structurée. Le livrable généré suit la structure attendue par la Content Factory, ce qui évite le travail de reformatage en aval.",
-            ],
-          },
-        ],
-      },
-      {
-        heading: "L'impact",
-        blocks: [
-          {
-            type: "p",
-            text: "L'agent est en production sur le périmètre transverse Groupe. Les gains observés :",
-          },
-          {
-            type: "ul",
-            items: [
-              "Environ 1h gagnée par brief en moyenne (moins d'allers-retours).",
-              "Périmètre couvert : marketing, product, e-merchandising.",
-              "Adoption progressive au sein des équipes émettrices.",
-            ],
-          },
-        ],
-      },
-      {
-        heading: "Ce que j'en retiens",
-        blocks: [
-          { type: "p", text: "Trois apprentissages transposables :" },
-          {
-            type: "ul",
-            items: [
-              "Le prompt engineering en contexte enterprise ne s'improvise pas. Il demande une connaissance fine des typologies internes et des non-dits organisationnels que l'IA doit apprendre à contourner.",
-              "L'adoption compte autant que la qualité technique. Un agent parfait mais mal introduit reste sur l'étagère. J'ai passé autant de temps sur la conduite du changement que sur les prompts.",
-              "L'IA générative appliquée au marketing n'est pas un gadget. Bien intégrée dans un workflow existant, elle produit un ROI temps immédiat et mesurable.",
-            ],
-          },
-        ],
-      },
-    ],
-    seo: {
-      title: "Agent IA dans une Content Factory Groupe — Théo Noyon",
-      description:
-        "Développement d'un agent IA en production pour un workflow content marketing multi-pays chez Manutan Group.",
-    },
-  },
-  {
     slug: "automation-ia",
     tag: "Process design",
     title:
@@ -239,6 +140,105 @@ export const projects: Project[] = [
       title: "Automatisation IA d'un processus Trade Marketing 5,5 M€ — Théo Noyon",
       description:
         "Cartographie end-to-end et architecture IA d'un processus multi-pays chez Manutan Group. Comité innovation.",
+    },
+  },
+  {
+    slug: "agent-ia",
+    tag: "AI in production",
+    title: "Un agent IA dans le workflow d'une Content Factory Groupe",
+    summary:
+      "Développement d'un agent IA (Claude, GPT) intégré au workflow de production content, réduisant les allers-retours entre équipes d'environ 1h par brief.",
+    org: "Manutan Group",
+    date: "2026",
+    tags: ["AI", "Workflow-automation", "Content"],
+    tldr: "Réduction d'environ 1h par brief content grâce à un agent IA (Claude, GPT) intégré au workflow transverse d'une équipe marketing multi-pays.",
+    meta: [
+      { label: "Context", value: "Manutan Group · Équipe Go-To-Market" },
+      { label: "Period", value: "2026" },
+      { label: "Role", value: "Développement & intégration" },
+      { label: "Stack", value: "Claude, GPT, prompt engineering, Notion" },
+    ],
+    sections: [
+      {
+        heading: "Le contexte",
+        blocks: [
+          {
+            type: "p",
+            text: "La Content Factory de Manutan Group produit l'ensemble du contenu marketing déployé sur 17 marchés européens. Elle sert plusieurs équipes en amont : marketing produit, e-merchandising, communication interne, GTM.",
+          },
+          {
+            type: "p",
+            text: "Chaque brief part d'un émetteur (par exemple un Chef de Produit) et arrive à la Content Factory qui produit le livrable (fiche produit, landing page, contenu campagne). Entre les deux : une phase itérative d'allers-retours pour clarifier la demande, valider les intentions, préciser les livrables attendus.",
+          },
+        ],
+      },
+      {
+        heading: "Le problème",
+        blocks: [
+          {
+            type: "p",
+            text: "Chaque brief perdait en moyenne une heure en allers-retours de clarification avant que la Content Factory n'ait la matière suffisante pour produire.",
+          },
+          {
+            type: "p",
+            text: "À l'échelle du volume de briefs traités mensuellement, ce temps se cumulait en une friction opérationnelle mesurable. Le problème n'était pas la qualité des briefs — c'était la structure des briefs. Les émetteurs remplissaient des templates statiques qui n'anticipaient pas les questions récurrentes de la Content Factory.",
+          },
+        ],
+      },
+      {
+        heading: "L'approche",
+        blocks: [
+          {
+            type: "p",
+            text: "Plutôt que de refaire le template (approche déjà tentée), j'ai proposé un agent IA en amont du template : un assistant conversationnel qui questionne l'émetteur pour extraire l'intention complète du brief, puis génère un livrable structuré directement exploitable par la Content Factory.",
+          },
+          { type: "p", text: "Trois choix de conception clés :" },
+          {
+            type: "ul",
+            items: [
+              "Approche conversationnelle plutôt que formulaire à trous. L'agent pose des questions contextuelles, adapte ses relances à la nature du brief (produit, campagne, contenu éditorial).",
+              "Prompt engineering itératif. Base de connaissances sur les typologies de briefs Manutan, guardrails sur les questions obligatoires, ton adapté au contexte pro.",
+              "Sortie structurée. Le livrable généré suit la structure attendue par la Content Factory, ce qui évite le travail de reformatage en aval.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "L'impact",
+        blocks: [
+          {
+            type: "p",
+            text: "L'agent est en production sur le périmètre transverse Groupe. Les gains observés :",
+          },
+          {
+            type: "ul",
+            items: [
+              "Environ 1h gagnée par brief en moyenne (moins d'allers-retours).",
+              "Périmètre couvert : marketing, product, e-merchandising.",
+              "Adoption progressive au sein des équipes émettrices.",
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Ce que j'en retiens",
+        blocks: [
+          { type: "p", text: "Trois apprentissages transposables :" },
+          {
+            type: "ul",
+            items: [
+              "Le prompt engineering en contexte enterprise ne s'improvise pas. Il demande une connaissance fine des typologies internes et des non-dits organisationnels que l'IA doit apprendre à contourner.",
+              "L'adoption compte autant que la qualité technique. Un agent parfait mais mal introduit reste sur l'étagère. J'ai passé autant de temps sur la conduite du changement que sur les prompts.",
+              "L'IA générative appliquée au marketing n'est pas un gadget. Bien intégrée dans un workflow existant, elle produit un ROI temps immédiat et mesurable.",
+            ],
+          },
+        ],
+      },
+    ],
+    seo: {
+      title: "Agent IA dans une Content Factory Groupe — Théo Noyon",
+      description:
+        "Développement d'un agent IA en production pour un workflow content marketing multi-pays chez Manutan Group.",
     },
   },
   {

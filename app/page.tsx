@@ -57,7 +57,7 @@ export default function HomePage() {
             <H2 id="contact-title" className="mt-4">
               Contact
             </H2>
-            <p className="mt-6">Discutons de vos enjeux GTM et IA.</p>
+            <p className="mt-6">Disponible en CDD ou CDI à partir de septembre 2027.</p>
             <div className="mt-8">
               <ContactLinks cvLabel="Download CV" />
             </div>

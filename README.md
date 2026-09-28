@@ -2,6 +2,8 @@
 
 Portfolio de Théo Noyon — Junior GTM & Marketing Operations.
 
+**En ligne :** [theonoyon-portfolio.vercel.app](https://theonoyon-portfolio.vercel.app)
+
 Next.js 15 (App Router, TypeScript strict) · Tailwind CSS 4 · shadcn/ui · Framer Motion · next-themes · Geist.
 
 ## Développement
@@ -46,4 +48,4 @@ npx vercel --prod   # production
 
 ## Auteur
 
-Théo Noyon — [linkedin.com/in/theo-noyon](https://www.linkedin.com/in/theo-noyon)
+Théo Noyon — [theonoyon-portfolio.vercel.app](https://theonoyon-portfolio.vercel.app) · [linkedin.com/in/theo-noyon](https://www.linkedin.com/in/theo-noyon)

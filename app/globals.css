@@ -1,26 +1,125 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Palette ──────────────────────────────────────────────
+   Light mode (appliqué quand .dark est absent).
+   --accent-text : variante de l'accent réservée au texte coloré
+   et aux focus rings, pour tenir le contraste WCAG AA.
+   En light, identique à --accent. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #0a0a0b;
+  --muted-foreground: #5f5f5f;
+  --border: #e5e5e5;
+  --accent: #1b3a6b;
+  --accent-text: #1b3a6b;
+  --card: #ffffff;
+  --radius: 8px;
+  color-scheme: light;
+}
+
+/* Dark mode (par défaut via next-themes). */
+.dark {
+  --background: #0a0a0b;
+  --foreground: #ededed;
+  --muted-foreground: #8a8a8a;
+  --border: #1f1f1f;
+  --accent: #2952a3;
+  /* #2952A3 sur #0A0A0B = 2.7:1 (échec AA texte). Même teinte éclaircie → 5:1. */
+  --accent-text: #5a7fcc;
+  --card: #111112;
+  color-scheme: dark;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-card: var(--card);
+  --color-ring: var(--accent-text);
+  --radius-lg: var(--radius);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 17px;
+    }
+  }
+
+  /* Poids autorisés : 400 / 500 / 600. Jamais de 700. */
+  b,
+  strong {
+    font-weight: 500;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-text);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ─── Underline animé (micro-signature) ────────────────────
+   Trait d'accent qui se dessine de gauche à droite en 300ms. */
+@layer components {
+  .link-underline {
+    position: relative;
+    display: inline-block;
+    transition: color 200ms ease-out;
+  }
+
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 0;
+    background: var(--accent);
+    transition: width 300ms ease-out;
+  }
+
+  .link-underline:hover::after,
+  .link-underline:focus-visible::after,
+  .link-underline[aria-current="page"]::after,
+  .group:hover .link-underline::after {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-underline::after {
+    transition: none;
+  }
+
+  /* Neutralise l'état initial des reveals, y compris au rendu serveur. */
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

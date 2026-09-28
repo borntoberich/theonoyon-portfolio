@@ -43,3 +43,7 @@ Ou en CLI :
 npx vercel          # preview
 npx vercel --prod   # production
 ```
+
+## Auteur
+
+Théo Noyon — [linkedin.com/in/theo-noyon](https://www.linkedin.com/in/theo-noyon)

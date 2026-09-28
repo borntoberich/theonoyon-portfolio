@@ -3,6 +3,7 @@ import Link from "next/link"
 import { Container } from "@/components/portfolio/Container"
 import { ProjectBadge } from "@/components/portfolio/ProjectBadge"
 import { Blocks, H2, h1Class } from "@/components/portfolio/Prose"
+import { ReadingProgress } from "@/components/portfolio/ReadingProgress"
 import { Reveal } from "@/components/portfolio/Reveal"
 import { buttonVariants } from "@/components/ui/button"
 import type { Project } from "@/content/projects"
@@ -17,6 +18,7 @@ export function CaseStudyLayout({
 }) {
   return (
     <>
+      <ReadingProgress />
       <article className="pt-16 pb-16 md:pt-24 md:pb-24">
         <Container>
           <header>

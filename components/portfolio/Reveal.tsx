@@ -8,11 +8,14 @@ export function Reveal({
   children,
   className,
   disabled,
+  delay = 0,
 }: {
   children: React.ReactNode
   className?: string
   /** Contenu au-dessus de la ligne de flottaison : rendu immédiat (préserve le LCP). */
   disabled?: boolean
+  /** Décalage en secondes (apparition en cascade). */
+  delay?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" })
@@ -27,7 +30,7 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, y: 8 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: "easeOut", delay }}
     >
       {children}
     </m.div>

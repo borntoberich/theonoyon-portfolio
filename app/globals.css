@@ -112,7 +112,47 @@
   }
 }
 
+/* ─── Entrées ──────────────────────────────────────────────
+   CSS pur : démarre dès le premier paint, sans attendre l'hydratation.
+   fill-mode « backwards » : une fois finie, l'animation ne laisse aucun
+   contexte d'empilement (sinon la barre de lecture passe sous la nav). */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Entrée au chargement (hero, liste /projects), décalée via --delay. */
+.enter {
+  animation: enter 500ms ease-out backwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+/* Fondu court à chaque changement de page (app/template.tsx). */
+.page-enter {
+  animation: fade-in 250ms ease-out backwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .enter,
+  .page-enter {
+    animation: none;
+  }
+
   .link-underline::after {
     transition: none;
   }

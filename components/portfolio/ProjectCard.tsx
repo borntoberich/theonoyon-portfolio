@@ -16,7 +16,15 @@ export function ProjectCard({
 }) {
   return (
     <article className="group relative rounded-lg border border-border bg-card p-8 transition-[transform,border-color] duration-200 ease-out hover:-translate-y-0.5 hover:border-accent has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-3 has-[a:focus-visible]:outline-ring motion-reduce:hover:translate-y-0">
-      <ProjectBadge>{project.tag}</ProjectBadge>
+      <div className="flex items-center justify-between">
+        <ProjectBadge>{project.tag}</ProjectBadge>
+        <span
+          aria-hidden="true"
+          className="text-muted-foreground transition-[color,transform] duration-200 ease-out group-hover:translate-x-1 group-hover:text-accent-text motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+        >
+          →
+        </span>
+      </div>
 
       <Heading className="mt-5 text-xl leading-snug font-medium tracking-[-0.01em] md:text-2xl">
         <Link href={`/projects/${project.slug}`} className="focus-visible:outline-none">

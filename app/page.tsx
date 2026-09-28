@@ -22,8 +22,8 @@ export default function HomePage() {
             </H2>
           </Reveal>
           <div className="mt-10 flex flex-col gap-6">
-            {projects.map((project) => (
-              <Reveal key={project.slug}>
+            {projects.map((project, i) => (
+              <Reveal key={project.slug} delay={i * 0.08}>
                 <ProjectCard project={project} />
               </Reveal>
             ))}

@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { Container } from "@/components/portfolio/Container"
 import { ProjectCard } from "@/components/portfolio/ProjectCard"
 import { h1Class } from "@/components/portfolio/Prose"
-import { Reveal } from "@/components/portfolio/Reveal"
 import { SectionBadge } from "@/components/portfolio/SectionBadge"
 import { projects } from "@/content/projects"
 import { pageMetadata } from "@/lib/metadata"
@@ -25,9 +24,13 @@ export default function ProjectsPage() {
         </h1>
         <div className="mt-10 flex flex-col gap-6">
           {projects.map((project, i) => (
-            <Reveal key={project.slug} disabled={i === 0}>
+            <div
+              key={project.slug}
+              className="enter"
+              style={{ "--delay": `${i * 80}ms` } as React.CSSProperties}
+            >
               <ProjectCard project={project} headingLevel="h2" />
-            </Reveal>
+            </div>
           ))}
         </div>
       </Container>

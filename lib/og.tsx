@@ -14,15 +14,19 @@ async function loadGoogleFont(family: string, weight: number) {
 }
 
 /**
- * Satori mesure mal l'espace qui suit certains glyphes de Geist (g, s, t…).
+ * Satori mesure mal l'espace qui suit certains glyphes (g, s, t…).
  * L'espace insécable n'a pas ce défaut.
  */
 const nbsp = (text: string) => text.replaceAll(" ", "\u00a0")
 
+const ink = "#0a0a0b"
+const muted = "#5f5f5f"
+const accent = "#1b3a6b"
+
+/** Reprend la section Contact du site (mode clair), avec le nom en titre. */
 export async function renderOgImage() {
-  const [regular, medium, semibold, mono] = await Promise.all([
+  const [regular, semibold, mono] = await Promise.all([
     loadGoogleFont("Geist", 400),
-    loadGoogleFont("Geist", 500),
     loadGoogleFont("Geist", 600),
     loadGoogleFont("Geist Mono", 400),
   ])
@@ -36,43 +40,51 @@ export async function renderOgImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: "72px 80px",
-          backgroundColor: "#0a0a0b",
-          backgroundImage:
-            "radial-gradient(circle at 100% 100%, rgba(41, 82, 163, 0.38) 0%, rgba(10, 10, 11, 0) 60%)",
-          color: "#ededed",
+          padding: "64px 80px 44px",
+          backgroundColor: "#fafafa",
           fontFamily: "Geist",
+          color: ink,
         }}
       >
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", fontFamily: "Geist Mono", fontSize: 26, color: muted }}>
+            {nbsp("Junior GTM & Marketing Operations")}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              marginTop: 18,
+              fontSize: 88,
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
+              lineHeight: 1,
+            }}
+          >
+            Th<span style={{ color: accent }}>é</span>o Noyon
+          </div>
+          <div style={{ display: "flex", marginTop: 32, fontSize: 32 }}>
+            {nbsp("Disponible en CDD ou CDI à partir de septembre 2027.")}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", marginTop: 34, gap: 14, fontSize: 30 }}>
+            <span>theo.noyon@hotmail.com</span>
+            <span>linkedin.com/in/theo-noyon</span>
+            <span>{nbsp("Download CV")}</span>
+          </div>
+        </div>
+
         <div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            fontFamily: "Geist Mono",
-            fontSize: 24,
-            letterSpacing: "0.02em",
-            color: "#8a8a8a",
+            alignItems: "center",
+            paddingTop: 24,
+            borderTop: "1px solid #e5e5e5",
+            fontSize: 22,
+            color: muted,
           }}
         >
+          <span>{nbsp("© 2026 Théo Noyon")}</span>
           <span>theonoyon-portfolio.vercel.app</span>
-          <span>Portfolio</span>
-        </div>
-
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 128,
-              fontWeight: 600,
-              letterSpacing: "-0.035em",
-              lineHeight: 1,
-            }}
-          >
-            Th<span style={{ color: "#5a7fcc" }}>é</span>o Noyon
-          </div>
-          <div style={{ display: "flex", marginTop: 28, fontSize: 44, fontWeight: 500 }}>
-            {nbsp("Junior GTM & Marketing Operations")}
-          </div>
         </div>
       </div>
     ),
@@ -80,7 +92,6 @@ export async function renderOgImage() {
       ...ogSize,
       fonts: [
         { name: "Geist", data: regular, weight: 400, style: "normal" },
-        { name: "Geist", data: medium, weight: 500, style: "normal" },
         { name: "Geist", data: semibold, weight: 600, style: "normal" },
         { name: "Geist Mono", data: mono, weight: 400, style: "normal" },
       ],

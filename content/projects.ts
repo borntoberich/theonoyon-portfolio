@@ -1,15 +1,30 @@
+export type ListItem = string | { title: string; text: string }
+
 export type Block =
   | { type: "p"; text: string }
-  | { type: "ul"; items: string[] }
-  | { type: "ol"; items: string[] }
+  | { type: "ul"; items: ListItem[] }
+  | { type: "ol"; items: ListItem[] }
+
+/** Bouton outlined : lien interne, externe (nouvel onglet) ou téléchargement. */
+export type Cta = {
+  label: string
+  href: string
+  external?: boolean
+  /** Nom du fichier téléchargé. */
+  download?: string
+}
 
 export type Section = {
   heading: string
   blocks: Block[]
+  /** Bouton affiché à la fin de la section. */
+  cta?: Cta
 }
 
+export type Meta = { label: string; value: string }[]
+
 export type Project = {
-  slug: "agent-ia" | "automation-ia" | "esport-research"
+  slug: "agent-ia" | "automation-ia" | "family-office" | "esport-research"
   /** Card */
   tag: string
   title: string
@@ -19,9 +34,12 @@ export type Project = {
   tags: string[]
   /** Case study */
   tldr: string
-  meta: { label: string; value: string }[]
+  meta: Meta
+  /** Note sous les métadonnées. */
+  note?: string
   sections: Section[]
-  download?: { label: string; href: string; filename: string }
+  /** Bouton affiché à la fin du case study. */
+  cta?: Cta
   seo: { title: string; description: string }
 }
 
@@ -242,6 +260,142 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "family-office",
+    tag: "Personal AI tooling",
+    title:
+      "Family office personnel — architecture IA pour la gestion patrimoniale",
+    summary:
+      "Conception d'une architecture conversationnelle avec Claude pour piloter mes décisions patrimoniales : mandat clair, roadmap, protocoles comportementaux, garde-fous. Projet documenté par Le Figaro.",
+    org: "Projet personnel",
+    date: "2026",
+    tags: ["AI-tooling", "Methodology", "Personal-project"],
+    tldr: "Conception d'une architecture conversationnelle avec Claude pour piloter mes décisions patrimoniales. Mandat clair, roadmap, protocoles comportementaux, garde-fous contre les biais de l'IA. Projet documenté dans Le Figaro Champs Libres.",
+    meta: [
+      { label: "Context", value: "Projet personnel" },
+      { label: "Period", value: "2026" },
+      {
+        label: "Role",
+        value: "Conception méthodologique, prompt engineering, garde-fous",
+      },
+      {
+        label: "Stack",
+        value: "Claude, prompt engineering, méthodologie patrimoniale",
+      },
+    ],
+    note: "Ce case study présente la démarche méthodologique. Aucune donnée patrimoniale personnelle n'y figure.",
+    sections: [
+      {
+        heading: "Le contexte",
+        blocks: [
+          {
+            type: "p",
+            text: "En tant que jeune actif, j'avais trois contraintes qui rendaient compliquée la gestion patrimoniale classique :",
+          },
+          {
+            type: "ul",
+            items: [
+              "Pas d'accès à un conseiller en gestion de patrimoine dédié (les CGP ciblent les patrimoines établis).",
+              "Un besoin d'arbitrer régulièrement entre épargne, placements et objectifs long terme.",
+              "Une conviction que la méthode comptait plus que les montants.",
+            ],
+          },
+          {
+            type: "p",
+            text: "Plutôt que de me rabattre sur des conseils fragmentés d'influenceurs finance ou des contenus produits bancaires, j'ai choisi de construire ma propre méthode avec un copilote IA.",
+          },
+        ],
+      },
+      {
+        heading: "Le problème",
+        blocks: [
+          {
+            type: "p",
+            text: "Les outils grand public de gestion de patrimoine partagent trois défauts :",
+          },
+          {
+            type: "ul",
+            items: [
+              "Ils sont réactifs plutôt que méthodologiques. Ils suivent ce que l'utilisateur a fait, mais ne l'aident pas à décider ce qu'il doit faire.",
+              "Ils ne gèrent pas les biais comportementaux. Vendre après une baisse, acheter sur un pic, se laisser emporter par une mode — aucun outil ne protège activement contre ça.",
+              "Ils ne personnalisent pas la décision. Les règles sont génériques, pas calibrées sur les objectifs de vie de l'utilisateur.",
+            ],
+          },
+          {
+            type: "p",
+            text: "Mon pari : une architecture conversationnelle avec un LLM bien cadré peut traiter ces trois défauts simultanément, à condition d'être conçue avec rigueur.",
+          },
+        ],
+      },
+      {
+        heading: "L'approche",
+        blocks: [
+          {
+            type: "p",
+            text: "J'ai construit l'architecture autour de quatre blocs méthodologiques :",
+          },
+          {
+            type: "ol",
+            items: [
+              {
+                title: "Un mandat clair.",
+                text: "Un prompt structuré qui définit : qui je suis financièrement, mes horizons temporels, mes objectifs long terme, mes contraintes de risque, mes principes non négociables. Ce mandat est le \"contrat\" avec l'IA — il cadre toutes les conversations suivantes.",
+              },
+              {
+                title: "Une roadmap patrimoniale.",
+                text: "Un document structuré que j'ai co-construit avec Claude : objectifs à 1 an, 5 ans, 10 ans ; priorités d'allocation ; règles de rebalancing. Révisée tous les trimestres.",
+              },
+              {
+                title: "Des protocoles comportementaux.",
+                text: "Des \"variables critiques\" documentées : qu'est-ce qui déclenche un arbitrage ? Quels sont les seuils psychologiques à surveiller ? Quelles sont les décisions à prendre à froid et quelles sont les décisions à retarder par principe ?",
+              },
+              {
+                title: "Des garde-fous explicites.",
+                text: "L'IA est consciente qu'elle peut halluciner, être victime de biais de confirmation, ou pousser à des décisions dangereuses. Elle est explicitement instruite de laisser place au doute, de signaler ses incertitudes, et de proposer de consulter un humain qualifié dès qu'un seuil de complexité est franchi.",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        heading: "Validation externe",
+        blocks: [
+          {
+            type: "p",
+            text: "Le projet a fait l'objet d'un portrait dans Le Figaro Champs Libres (17 septembre 2026), sous le titre \"À 25 ans, il gère son patrimoine avec une IA à 20 euros par mois\".",
+          },
+          {
+            type: "p",
+            text: "L'article confronte la démarche aux réserves de l'Autorité des marchés financiers sur l'usage de l'IA comme source de conseil financier — un point de vigilance qui a précisément nourri la conception des garde-fous.",
+          },
+        ],
+        cta: { label: "Lire l'article Le Figaro →", href: "/press/figaro" },
+      },
+      {
+        heading: "Ce que j'en retiens",
+        blocks: [
+          {
+            type: "p",
+            text: "Trois apprentissages directement transposables à mes autres projets IA :",
+          },
+          {
+            type: "ul",
+            items: [
+              "La qualité du mandat initial détermine la qualité de toutes les sorties. Un prompt bien structuré, avec objectifs, contraintes et principes explicites, change radicalement la pertinence des réponses — bien plus que le choix du modèle.",
+              "Le framing \"copilote\" plutôt qu'\"oracle\" est essentiel pour une IA bien utilisée. L'IA doit laisser place au doute, pas produire des certitudes. Ce framing s'applique au marketing autant qu'à la finance.",
+              "Les méthodes se transfèrent. Mandat clair, roadmap, protocoles, garde-fous : ces quatre blocs que j'ai éprouvés sur ce projet personnel structurent désormais tous les workflows IA que je conçois en contexte pro.",
+            ],
+          },
+        ],
+      },
+    ],
+    seo: {
+      title:
+        "Family office personnel — architecture IA pour la gestion patrimoniale — Théo Noyon",
+      description:
+        "Conception d'une architecture conversationnelle avec Claude pour piloter mes décisions patrimoniales. Projet personnel documenté dans Le Figaro.",
+    },
+  },
+  {
     slug: "esport-research",
     tag: "Academic research",
     title:
@@ -374,10 +528,10 @@ export const projects: Project[] = [
         ],
       },
     ],
-    download: {
+    cta: {
       label: "Télécharger le rapport complet (PDF)",
       href: "/rapport-sponsoring-esport.pdf",
-      filename: "Theo-Noyon-Rapport-Sponsoring-Esport.pdf",
+      download: "Theo-Noyon-Rapport-Sponsoring-Esport.pdf",
     },
     seo: {
       title:

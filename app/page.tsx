@@ -2,7 +2,7 @@ import { AnimatedLink } from "@/components/portfolio/AnimatedLink"
 import { ContactLinks } from "@/components/portfolio/ContactLinks"
 import { Container } from "@/components/portfolio/Container"
 import { Hero } from "@/components/portfolio/Hero"
-import { ProjectCard } from "@/components/portfolio/ProjectCard"
+import { ProjectCard, projectCardProps } from "@/components/portfolio/ProjectCard"
 import { H2 } from "@/components/portfolio/Prose"
 import { Reveal } from "@/components/portfolio/Reveal"
 import { SectionBadge } from "@/components/portfolio/SectionBadge"
@@ -24,7 +24,7 @@ export default function HomePage() {
           <div className="mt-10 flex flex-col gap-6">
             {projects.map((project, i) => (
               <Reveal key={project.slug} delay={i * 0.08}>
-                <ProjectCard project={project} />
+                <ProjectCard {...projectCardProps(project)} />
               </Reveal>
             ))}
           </div>

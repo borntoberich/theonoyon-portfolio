@@ -8,9 +8,11 @@ import { Container } from "@/components/portfolio/Container"
 import { ThemeToggle } from "@/components/portfolio/ThemeToggle"
 import { cn } from "@/lib/utils"
 
+/** `section` : préfixe d'URL qui rend l'item actif. */
 const links = [
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
+  { href: "/projects", section: "/projects", label: "Projects" },
+  { href: "/press/figaro", section: "/press", label: "Press" },
+  { href: "/about", section: "/about", label: "About" },
 ]
 
 export function Nav() {
@@ -42,9 +44,9 @@ export function Nav() {
         </AnimatedLink>
 
         <nav aria-label="Navigation principale" className="flex items-center gap-4 sm:gap-6">
-          <ul className="flex items-center gap-5 sm:gap-6">
-            {links.map(({ href, label }) => {
-              const active = pathname === href || pathname.startsWith(`${href}/`)
+          <ul className="flex items-center gap-4 sm:gap-6">
+            {links.map(({ href, section, label }) => {
+              const active = pathname === section || pathname.startsWith(`${section}/`)
               return (
                 <li key={href}>
                   <AnimatedLink

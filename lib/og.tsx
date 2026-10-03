@@ -98,3 +98,88 @@ export async function renderOgImage() {
     }
   )
 }
+
+/** Coupe un texte en lignes d'au plus `max` caractères (Satori ne renvoie pas à la ligne avec des espaces insécables). */
+function wrapLines(text: string, max: number) {
+  // Un nombre reste collé au mot qui le suit (« 20 euros », « 25 ans »).
+  return text.replace(/(\d) /g, "$1\u00a0").split(" ").reduce<string[]>((lines, word) => {
+    const last = lines.at(-1)
+    if (last !== undefined && `${last} ${word}`.length <= max) lines[lines.length - 1] = `${last} ${word}`
+    else lines.push(word)
+    return lines
+  }, [])
+}
+
+/** Image de partage d'une page de contenu (case study, presse) : même langage que l'image principale. */
+export async function renderArticleOgImage({ eyebrow, title }: { eyebrow: string; title: string }) {
+  const [regular, semibold, mono] = await Promise.all([
+    loadGoogleFont("Geist", 400),
+    loadGoogleFont("Geist", 600),
+    loadGoogleFont("Geist Mono", 400),
+  ])
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "64px 80px 44px",
+          backgroundColor: "#fafafa",
+          fontFamily: "Geist",
+          color: ink,
+        }}
+      >
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", fontFamily: "Geist Mono", fontSize: 30, color: accent }}>
+            {nbsp(eyebrow)}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: 28,
+              fontSize: 68,
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
+              lineHeight: 1.12,
+            }}
+          >
+            {wrapLines(title, 30).map((line) => (
+              <span key={line}>{nbsp(line)}</span>
+            ))}
+          </div>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingTop: 22,
+            borderTop: "1.5px solid #e5e5e5",
+            fontSize: 26,
+            color: muted,
+          }}
+        >
+          <div style={{ display: "flex" }}>
+            Th<span style={{ color: accent }}>é</span>
+            {nbsp("o Noyon")}
+          </div>
+          <span>theonoyon-portfolio.vercel.app</span>
+        </div>
+      </div>
+    ),
+    {
+      ...ogSize,
+      fonts: [
+        { name: "Geist", data: regular, weight: 400, style: "normal" },
+        { name: "Geist", data: semibold, weight: 600, style: "normal" },
+        { name: "Geist Mono", data: mono, weight: 400, style: "normal" },
+      ],
+    }
+  )
+}

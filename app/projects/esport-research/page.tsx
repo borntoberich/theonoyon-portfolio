@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { CaseStudyLayout } from "@/components/portfolio/CaseStudyLayout"
+import { ProjectCaseStudy } from "@/components/portfolio/CaseStudyLayout"
 import { getProject } from "@/content/projects"
 import { pageMetadata } from "@/lib/metadata"
 
@@ -13,5 +13,5 @@ export const metadata: Metadata = pageMetadata({
 })
 
 export default function Page() {
-  return <CaseStudyLayout project={project} next={next} />
+  return <ProjectCaseStudy project={project} next={next} />
 }

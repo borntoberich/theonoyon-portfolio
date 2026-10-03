@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/projects",
     ...projects.map((p) => `/projects/${p.slug}`),
+    "/press/figaro",
     "/about",
   ]
   return routes.map((route) => ({

@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 
 import { Container } from "@/components/portfolio/Container"
-import { ProjectCard } from "@/components/portfolio/ProjectCard"
+import { ProjectCard, projectCardProps } from "@/components/portfolio/ProjectCard"
 import { h1Class } from "@/components/portfolio/Prose"
 import { SectionBadge } from "@/components/portfolio/SectionBadge"
 import { projects } from "@/content/projects"
@@ -29,7 +29,7 @@ export default function ProjectsPage() {
               className="enter"
               style={{ "--delay": `${i * 80}ms` } as React.CSSProperties}
             >
-              <ProjectCard project={project} headingLevel="h2" />
+              <ProjectCard {...projectCardProps(project)} headingLevel="h2" />
             </div>
           ))}
         </div>

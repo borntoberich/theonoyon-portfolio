@@ -1,4 +1,4 @@
-import type { Block } from "@/content/projects"
+import type { Block, ListItem } from "@/content/projects"
 import { cn } from "@/lib/utils"
 
 /** Styles typographiques partagés (case studies, About). */
@@ -23,6 +23,16 @@ export function H2({
   )
 }
 
+function Item({ item }: { item: ListItem }) {
+  if (typeof item === "string") return <span>{item}</span>
+  return (
+    <span>
+      <span className="block font-medium">{item.title}</span>
+      <span className="mt-1 block">{item.text}</span>
+    </span>
+  )
+}
+
 export function Blocks({ blocks }: { blocks: Block[] }) {
   return (
     <div className="space-y-5">
@@ -40,7 +50,7 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
                   >
                     {j + 1}.
                   </span>
-                  <span>{item}</span>
+                  <Item item={item} />
                 </li>
               ))}
             </ol>
@@ -53,7 +63,7 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
                 <span aria-hidden="true" className="text-muted-foreground">
                   —
                 </span>
-                <span>{item}</span>
+                <Item item={item} />
               </li>
             ))}
           </ul>

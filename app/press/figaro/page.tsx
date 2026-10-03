@@ -30,8 +30,8 @@ function Cover() {
     <Image
       src={figaro.cover.src}
       alt={figaro.cover.alt}
-      width={1440}
-      height={900}
+      width={902}
+      height={712}
       sizes="(min-width: 768px) 720px, 100vw"
       className="h-auto w-full rounded-lg border border-border"
     />
